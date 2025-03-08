@@ -1,10 +1,17 @@
-FROM python:latest
+# Utilisation de l'image python
+FROM python:3.8-slim
 
-# Installez les dépendances nécessaires
-RUN pip install pandas pymongo
-
-# Copiez votre code dans le conteneur
-COPY . /app
+# Répertoire de travail
 WORKDIR /app
 
-CMD ["python", "main.py"]
+# Copier le fichier de configuration
+COPY requirements.txt requirements.txt
+
+# Installer les dépendances
+RUN pip install -r requirements.txt
+
+# Copier le reste de l'application
+COPY . .
+
+# Commande par défaut
+CMD ["python", "./fastapi_app/main.py"]

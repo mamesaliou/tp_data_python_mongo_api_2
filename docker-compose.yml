@@ -7,9 +7,11 @@ services:
     ports:
       - 27017:27017
 
-  pipeline:
+  fastapi:
     build: .
-    container_name: spotify_pipeline
+    container_name: fastapi_app
+    ports:
+      - "8000:8000"
     depends_on:
       - mongodb
     networks:
