@@ -1,5 +1,4 @@
 import pandas as pd
-from scripts.extract import extract_data
 
 def transform_data(df):
     # Gestion des valeurs manquantes

@@ -2,14 +2,14 @@ from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 from pymongo import MongoClient
 from bson import ObjectId
-from scripts.extract import extract_data
-from scripts.transform import transform_data
-from scripts.load import load_data
+# from scripts.extract import extract_data
+# from scripts.transform import transform_data
+# from scripts.load import load_data
 
-file_path = './data/spotify_history.csv'
-df = extract_data(file_path)
-df = transform_data(df)
-load_data(df)
+# file_path = './data/spotify_history.csv'
+# df = extract_data(file_path)
+# df = transform_data(df)
+# load_data(df)
 
 app = FastAPI()
 client = MongoClient("mongodb://localhost:27017/")

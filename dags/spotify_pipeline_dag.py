@@ -1,10 +1,6 @@
 from airflow import DAG
-from airflow.operators.python_operator import PythonOperator
+from airflow.operators.bash import BashOperator
 from datetime import datetime
-import pandas as pd
-from scripts.extract import extract_data
-from scripts.transform import transform_data
-from scripts.load import load_data
 
 default_args = {
     'owner': 'airflow',
@@ -19,32 +15,21 @@ dag = DAG(
     schedule_interval='@daily',
 )
 
-def run_extract():
-    data = extract_data('data/SpotifyHistory.csv')
-    return data
-
-def run_transform(data):
-    transformed_data = transform_data(data)
-    return transformed_data
-
-def run_load(data):
-    load_data(data, 'spotify_history', 'listening_history')
-
-extract_task = PythonOperator(
+extract_task = BashOperator(
     task_id='extract_data',
-    python_callable=run_extract,
+    bash_command='python /workspaces/tp_data_python_mongo_api_2/scripts/extract.py',
     dag=dag,
 )
 
-transform_task = PythonOperator(
+transform_task = BashOperator(
     task_id='transform_data',
-    python_callable=lambda **kwargs: run_transform(kwargs['ti'].xcom_pull(task_ids='extract_data')),
+    bash_command='python /workspaces/tp_data_python_mongo_api_2/scripts/transform.py',
     dag=dag,
 )
 
-load_task = PythonOperator(
+load_task = BashOperator(
     task_id='load_data',
-    python_callable=lambda **kwargs: run_load(kwargs['ti'].xcom_pull(task_ids='transform_data')),
+    bash_command='python /workspaces/tp_data_python_mongo_api_2/scripts/load.py',
     dag=dag,
 )
 
