@@ -5,7 +5,7 @@ from scripts.load import load_data
 file_path = './data/spotify_history.csv'
 df = extract_data(file_path)
 df = transform_data(df)
-load_data(df, 'spotify_history', 'listening_history')
+load_data(df)
 
 # import datetime
 # import uuid

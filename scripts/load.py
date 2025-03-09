@@ -1,10 +1,10 @@
-from pymongo import MongoClient, errors
+from pymongo import MongoClient
 
-def load_data(df, db_name, collection_name):
+def load_data(df):
     try:
         client = MongoClient("mongodb://localhost:27017/")
-        db = client[db_name]
-        collection = db[collection_name]
+        db = client.spotify_history
+        collection = db.listening_history
         
         data_dict = df.to_dict("records")
         collection.insert_many(data_dict)
