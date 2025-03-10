@@ -81,7 +81,7 @@ Définissez un DAG Airflow pour orchestrer le pipeline et exécuter automatiquem
 
 Create Github codespaces :
 
-![](image.png)
+![](assets/images/image.png)
 
 python -m venv venv
 source venv/bin/activate
