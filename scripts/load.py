@@ -7,13 +7,16 @@ def load_data(df):
         collection = db.listening_history
         
         data_dict = df.to_dict("records")
+        #collection.delete_many({}) # pour éviter de recharger les memes données
         collection.insert_many(data_dict)
         
+        # for record in data_dict:
+        #     # Utilise un identifiant unique (par exemple, 'id') pour remplacer les documents existants
+        #     collection.replace_one({'spotify_track_uri': record['spotify_track_uri']}, record, upsert=True)
+
         print("Données chargées avec succès dans MongoDB.")
     except Exception as e:
         print(f"Erreur lors du chargement des données dans MongoDB : {e}")
- 
-# Example usage
-# load_data(your_dataframe, 'your_db_name', 'your_collection_name')
+
 # Utiliser mongosh pour vérifier l'ingestion des données dans MongoDB: 
 # docker exec -it mongodb mongosh
