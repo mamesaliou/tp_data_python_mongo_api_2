@@ -77,9 +77,11 @@ Définissez un DAG Airflow pour orchestrer le pipeline et exécuter automatiquem
 
 📄 requirements.txt: Liste des dépendances Python nécessaires au projet.
 
-### 6. Installation et Exécution (Github codespaces (Recommended)
+### 6. Installation et Exécution (Github codespaces (Recommended))
 
-Create [Github codespaces with this link]
+Create Github codespaces :
+
+![](image.png)
 
 python -m venv venv
 source venv/bin/activate
